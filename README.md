@@ -21,7 +21,7 @@ export STORAGE_CONTAINER_NAME="the storage container name" # Example: imagescont
 export STATE_STORAGE_ACCOUNT_NAME="the state storage account name" # Example: terraformstorage (Created manually)
 export STATE_STORAGE_CONTAINER_NAME="the state storage container name" # Example: terraformcontainer (Created manually)
 export ALLOWED_IPS='["83.147.179.166/32", "83.147.179.167/32"]' # It is a list of allowed IPs to the servers
-export AMOUNT=2
+export AMOUNT=2 # Amount of servers you want to be running
 ```
 - Create a storage account and container to store the Terraform State following: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal
 - Run `bash azure-images.sh create`. Every time you add/remove a server you need to run this command so the Terraform State can be updated.
