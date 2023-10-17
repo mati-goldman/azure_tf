@@ -1,0 +1,6 @@
+resource_group_name  = "$RESOURCE_GROUP_NAME"
+storage_account_name = "$STATE_STORAGE_ACCOUNT_NAME"
+container_name       = "STATE_CONTAINER_ACCOUNT_NAME"
+key                  = "azure-images"
+subscription_id      = "$ARM_SUBSCRIPTION_ID"
+tenant_id            = "$ARM_TENANT_ID"

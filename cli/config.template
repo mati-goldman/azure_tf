@@ -1,0 +1,3 @@
+TERRAFORM_PATH=../infrastructure/terraform/azure
+TERRAFORM_BACKEND=../infrastructure/terraform/azure/backend.hcl
+TERRAFORM_TFVARS=../infrastructure/terraform/azure/azure.auto.tfvars

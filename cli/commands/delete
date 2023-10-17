@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -e
+
+. "$(pwd)"/common
+
+export_config() {
+  cli_log "STARTED - Exporting config.template..."
+  envsubst < config.template > config
+  export $(xargs < config)
+  envsubst < "$TERRAFORM_BACKEND".template > "$TERRAFORM_BACKEND"
+  envsubst < "$TERRAFORM_TFVARS".template > "$TERRAFORM_TFVARS"
+  cli_log "FINISHED - Exporting config.template..."
+}
+
+destroy_infrastructure() {
+  cli_log "STARTED - Destroying resources"
+  cd "$TERRAFORM_PATH" || exit
+  terraform init -backend-config=backend.hcl -reconfigure
+  terraform destroy -auto-approve
+  cli_log "FINISHED - Destroying resources"
+}
+
+main() {
+  export_config
+  destroy_infrastructure
+}
+
+main "$@"

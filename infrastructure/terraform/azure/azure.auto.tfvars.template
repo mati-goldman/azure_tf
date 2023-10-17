@@ -1,0 +1,12 @@
+location               = "westeurope"
+caching                = "ReadWrite"
+storage_account_type   = "Standard_LRS"
+resource_group_name    = "$RESOURCE_GROUP_NAME"
+admin_username         = "$ADMIN_USERNAME"
+admin_password         = "$ADMIN_PASSWORD"
+size                   = "$SERVER_SIZE"
+server_name            = "server"
+storage_account_name   = "$STORAGE_ACCOUNT_NAME"
+storage_container_name = "$STORAGE_CONTAINER_NAME"
+allowed_ips            = $ALLOWED_IPS
+amount                 = $AMOUNT

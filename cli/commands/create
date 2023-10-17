@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -e
+
+. "$(pwd)"/common
+
+export_config() {
+  cli_log "STARTED - Exporting config.template..."
+  envsubst < config.template > config
+  export $(xargs < config)
+  envsubst < "$TERRAFORM_BACKEND".template > "$TERRAFORM_BACKEND"
+  envsubst < "$TERRAFORM_TFVARS".template > "$TERRAFORM_TFVARS"
+  cli_log "FINISHED - Exporting config.template..."
+}
+
+initialize_terraform() {
+  cli_log "START - Initializing terraform..."
+  cd "$TERRAFORM_PATH"
+  terraform init -backend-config=backend.hcl -reconfigure -upgrade
+  cli_log "FINISHED - Initializing terraform..."
+}
+
+run_terraform() {
+  cli_log "STARTED - Creating $AMOUNT servers"
+  terraform apply -auto-approve
+  cli_log "FINISHED - Creating $AMOUNT servers"
+}
+
+main() {
+  export_config
+  initialize_terraform
+  run_terraform
+}
+
+main "$@"
